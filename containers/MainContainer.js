@@ -14,30 +14,24 @@ export default class MainContainer extends Component{
         "Your the best Around!"
       ],
       selected: 0,
-      fadeAnim: new Animated.Value(0)
+
     }
   }
+
+
   onPress(){
-    var x = Math.floor(Math.random()*2+1)
+    var x = Math.floor(Math.random()*4+1)
     this.setState({
       selected: x
     })
-    Animated.timing(                  // Animate over time
-      this.state.fadeAnim,            // The animated value to drive
-      {
-        toValue: 0,                   // Animate to opacity: 1 (opaque)
-        duration: 1000,              // Make it take a while
-      }
-    ).start();
   }
 
   render(){
-    let { fadeAnim } = this.state;
     return(
       <View style={styles.container}>
-        <Animated.View style={{opacity: fadeAnim}}>
-          <Text  style={styles.complementText}>{this.state.complements[this.state.selected]}</Text>
-        </Animated.View>
+        <View>
+          <Text  style={styles.complementText}> {this.state.complements[this.state.selected]}</Text>
+        </View>
         <View style={styles.buttonContainer}>
           <MainButton style={styles.button} onPress={this.onPress.bind(this)} />
         </View>
@@ -59,7 +53,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     color:'white',
     fontSize:18,
-    fontFamily:'Roboto',
   },
   buttonContainer:{
     width: 200,
